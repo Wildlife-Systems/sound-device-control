@@ -1,1 +1,5 @@
-# aao-sound: script for setting up the sound recording environment on a Raspberry Pi
+# sdc: sound device control for Raspberry Pi
+
+## Comaptible devices
+* audioInjector Zero
+* audioInjector Stereo
