@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #Identify the sound card
-DEV=0
+DEV="0"
 DEVTEST=`aplay -l | grep -c "AudioInjector audio wm8731-hifi-0"`
 if [ "$DEVTEST" -eq "1" ]; then
 	DEV="ai-zero"
 fi
 
-if ["$DEV" -eq "0"]; then
+if ["$DEV" = "0"]; then
 	echo "No compatible sound device found."
 	exit 1
 fi
