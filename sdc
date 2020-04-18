@@ -43,9 +43,9 @@ case "$1" in
 		esac
 		;;
 	*)
-		echo $"Usage: $0 input <line|mic>"
-		echo $"       $0 volume <capture|master> <n%|n>"
-		echo $"       $0 mic-boost <on|off>"
+		echo $"Usage: sdc input <line|mic>"
+		echo $"       sdc volume <capture|master> <n%|n>"
+		echo $"       sdc mic-boost <on|off>"
 		exit 1
 		;;
 esac
