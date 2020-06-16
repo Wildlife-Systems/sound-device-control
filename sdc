@@ -12,6 +12,11 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="ai-ultra"
 fi
 
+DEVTEST=`aplay -l | grep -c "audioinjector-octo-soundcard"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="ai-octo"
+fi
+
 if ["$DEV" = "0"]; then
 	echo "No compatible sound device found."
 	exit 1
@@ -77,6 +82,9 @@ case "$1" in
 				;;
 			ai-ultra)
 				echo "AudioInjector Ultra"
+				;;
+			ai-octo)
+				echo "AudioInjector Octo"
 				;;
 			*)
 				echo "No compatible card detected."
