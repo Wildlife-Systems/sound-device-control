@@ -3,3 +3,4 @@
 ## Comaptible devices
 * audioInjector Zero
 * audioInjector Stereo
+* audioInjector Ultra
