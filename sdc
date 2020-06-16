@@ -7,6 +7,11 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="ai-zero"
 fi
 
+DEVTEST=`aplay -l | grep -c "audioinjector-ultra"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="ai-ultra"
+fi
+
 if ["$DEV" = "0"]; then
 	echo "No compatible sound device found."
 	exit 1
@@ -16,10 +21,29 @@ case "$1" in
 	input)
 		case "$2" in 
 			line)
-				alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
-				;;
+				case "$DEV" in
+					ai-zero)
+						alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
+						;;
+					ai-ultra)
+						amixer cset name='ADC Mux' 1
+						;;
+					*)
+						echo "line is not a supported input for $DEV"
+						exit 1
+				esac
 			mic)
-				alsactl --file /usr/share/doc/audioInjector/asound.state.MIC.thru.test restore
+				case "$DEV" in
+					ai-zero)
+						alsactl --file /usr/share/doc/audioInjector/asound.state.MIC.thru.test restore
+						;;
+					ai-ultra)
+						amixer cset name='ADC Mux' 0
+						;;
+					*)
+						echo "mic is not a supported input for $DEV"
+						exit 1
+				esac
 				;;
 		esac
 		;;
