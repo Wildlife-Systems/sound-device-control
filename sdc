@@ -31,7 +31,9 @@ case "$1" in
 					*)
 						echo "line is not a supported input for $DEV"
 						exit 1
+						;;
 				esac
+				;;
 			mic)
 				case "$DEV" in
 					ai-zero)
@@ -43,6 +45,7 @@ case "$1" in
 					*)
 						echo "mic is not a supported input for $DEV"
 						exit 1
+						;;
 				esac
 				;;
 		esac
@@ -54,6 +57,7 @@ case "$1" in
 				;;
 			master)
 				amixer sset Master $3
+				;;
 		esac
 		;;
 	mic-boost)
@@ -66,10 +70,24 @@ case "$1" in
 				;;
 		esac
 		;;
+	name)
+		case "$DEV" in
+			ai-zero)
+				echo "AudioInjector Zero or AudioInjector Stero"
+				;;
+			ai-ultra)
+				echo "AudioInjector Ultra"
+				;;
+			*)
+				echo "No compatible card detected."
+				;;
+		esac
+		;;
 	*)
 		echo $"Usage: sdc input <line|mic>"
 		echo $"       sdc volume <capture|master> <n%|n>"
 		echo $"       sdc mic-boost <on|off>"
+		echo $"       sdc name"
 		exit 1
 		;;
 esac
