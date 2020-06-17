@@ -126,7 +126,7 @@ case "$1" in
 							amixer cset name='ADC2 Capture Volume' $3
 							amixer cset name='ADC3 Capture Volume' $3
 						else
-							amixer cset name='ADC$4 Capture Volume' $4
+							amixer cset name="ADC$4 Capture Volume" $3
 						fi
 						;;
 					*)
@@ -146,6 +146,17 @@ case "$1" in
 							amixer sset Headphone -- $N
 						else
 							amixer sset Headphone -- $3
+						fi
+						;;
+					ai-octo)
+						if [ -z "$4" ]; then
+							echo "Setting all DAC values (1-3). Set individual using captureN."
+							amixer cset name='DAC1 Capture Volume' $3
+							amixer cset name='DAC2 Capture Volume' $3
+							amixer cset name='DAC3 Capture Volume' $3
+							amixer cset name='DAC4 Capture Volume' $3
+						else
+							amixer cset name="DAC$4 Capture Volume" $3
 						fi
 						;;
 					ai-ultra)
