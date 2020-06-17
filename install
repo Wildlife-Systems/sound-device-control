@@ -1,11 +1,11 @@
 #!/bin/bash
 
-wget https://github.com/audioblast/sound-device-control/raw/master/sdc
+wget https://github.com/wildlife-systems/sound-device-control/raw/master/sdc
 chown root:root sdc
 chmod +x sdc
 mv sdc /usr/bin
 
-wget https://github.com/audioblast/sound-device-control/raw/master/sdc-inst
+wget https://github.com/wildlife-systems/sound-device-control/raw/master/sdc-inst
 chown root:root sdc-inst
 chmod +x sdc-inst
 mv sdc-inst /usr/bin
