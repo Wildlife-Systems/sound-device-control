@@ -2,5 +2,9 @@
 
 cd /usr/bin
 wget https://github.com/audioblast/sound-device-control/raw/master/sdc
-chown root:root
+chown root:root sdc
 chmod +x sdc
+
+wget https://github.com/audioblast/sound-device-control/raw/master/sdc-inst
+chown root:root sdc-inst
+chmod +x sdc-inst
