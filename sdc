@@ -66,6 +66,44 @@ case "$1" in
 				;;
 		esac
 		;;
+	output)
+		case "$2" in
+			headphone)
+				case "$DEV" in
+					rpi-core-audio)
+						amixer cset numid=3 1
+						;;
+					*)
+						echo "headphone is not a supported output for $DEV"
+						exit 1
+						;;
+				esac
+				;;
+			hdmi)
+				case "$DEV" in
+					rpi-core-audio)
+						amixer cset numid=3 2
+						;;
+					*)
+						echo "HDMI is not a supported output for $DEV"
+						exit 1
+						;;
+				esac
+				;;
+			auto)
+				case "$DEV" in
+					rpi-core-audio)
+						amixer cset numid=3 0
+						;;
+					*)
+						echo "auto is not a supported output for $DEV"
+						exit 1
+						;;
+			
+				esac
+				;;
+		esac
+		;;
 	volume)
 		case "$2" in
 			capture)
@@ -85,7 +123,12 @@ case "$1" in
 						;;
 					rpi-core-audio)
 						echo "Setting Headphone output for rpi-core-audio"
-						amixer sset Headphone $3
+						if [[ "$3" == *% ]]; then
+							N=`awk "BEGIN {print int(${3%\%} * 10639 / 100 - 10239)}"`
+							amixer sset Headphone -- $N
+						else
+							amixer sset Headphone -- $3
+						fi
 						;;
 					*)
 						echo "master is not a supported output for $DEV"
@@ -121,6 +164,9 @@ case "$1" in
 			rpa-dac)
 				echo "RasPiAudio Audio+ DAC"
 				;;
+			rpi-core-audio)
+				echo "Raspberry Pi inbuilt audio"
+				;;
 			*)
 				echo "No compatible card detected."
 				;;
@@ -128,6 +174,7 @@ case "$1" in
 		;;
 	*)
 		echo $"Usage: sdc input <line|mic>"
+		echo $"       sdc output <headphone|hdmi|auto>"
 		echo $"       sdc volume <capture|master> <n%|n>"
 		echo $"       sdc mic-boost <on|off>"
 		echo $"       sdc name"
