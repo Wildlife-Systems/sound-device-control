@@ -1,0 +1,23 @@
+#!/bin/bash
+
+case "$1" in
+        ai-ultra)
+                #sudo rpi-update
+
+                # firstly disable PWM audio
+                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
+
+                # now check to see the correct device tree overlay is loaded ...
+                cnt=`grep -c audioinjector-ultra /boot/config.txt`
+                if [ "$cnt" -eq "0" ]; then
+                        sudo sh -c "echo '# enable the AudioInjector.net sound card
+                        dtoverlay=audioinjector-ultra' >> /boot/config.txt"
+                fi
+
+                ;;
+        *)
+                echo "$1 is not supported."
+                exit 1
+
+                ;;
+esac
