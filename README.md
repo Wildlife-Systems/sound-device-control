@@ -8,5 +8,5 @@ This bash script allows for control of various Raspberry Pi sound cards using a 
 * raspiaudio Audio+ DAC
 
 ## Development
-* Initial development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatpries project at the University of York.
+* Initial development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatories project at the University of York.
 * Support for further devices was added as part of the Urban Nature Project at the Natural History Museum, London.
