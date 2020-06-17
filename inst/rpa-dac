@@ -403,6 +403,15 @@ if confirm "Do you wish to continue?"; then
     echo "Enjoy your new $productname!" && newline
 
     if [ $promptreboot == "yes" ] || $ASK_TO_REBOOT; then
+        sudo echo -e "pcm.raspiaudio{\ntype softvol\n" > ~/asound.conf
+    sudo echo -e "slave.pcm \042plughw:0\042\n " >> ~/asound.conf
+    sudo echo -e "control.name \042Master\042\n " >> ~/asound.conf
+    sudo echo -e "control.card 0 }" >>~/asound.conf
+    sudo echo -e " pcm.!default { \n" >>~/asound.conf
+    sudo echo -e "type plug \n" >>~/asound.conf
+    sudo echo -e "slave.pcm  \042raspiaudio\042 \n}\n" >>~/asound.conf
+
+    sudo mv ~/asound.conf /etc/asound.conf
         sysreboot
     fi
 else
