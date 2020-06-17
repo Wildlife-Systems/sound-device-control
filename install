@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /usr/bin
+wget https://github.com/audioblast/sound-device-control/raw/master/sdc
+chown root:root
+chmod +x sdc
