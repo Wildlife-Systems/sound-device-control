@@ -2,6 +2,12 @@
 
 #Identify the sound card
 DEV="0"
+
+DEVTEST=`aplay -l | grep -c "bcm2835 Headphones"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="rpi-core-audio"
+fi
+
 DEVTEST=`aplay -l | grep -c "AudioInjector audio wm8731-hifi-0"`
 if [ "$DEVTEST" -eq "1" ]; then
 	DEV="ai-zero"
@@ -76,6 +82,10 @@ case "$1" in
 				case "$DEV" in
 					ai-zero | rpa-dac)
 						amixer sset Master $3
+						;;
+					rpi-core-audio)
+						echo "Setting Headphone output for rpi-core-audio"
+						amixer sset Headphone $3
 						;;
 					*)
 						echo "master is not a supported output for $DEV"
