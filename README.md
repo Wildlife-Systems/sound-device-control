@@ -13,7 +13,7 @@ Devices that have been tested with these scripts are listed below. The short nam
 | Inbuilt headphone jack | rpi-core-audio |
 
 ## Installing this package
-`wget -O - https://github.com/audioblast/sound-device-control/raw/master/install | sudo bash`
+`wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
 
 ## Installation of sound device software
 The script `sdc-inst` can be used to install various drivers for sound cards and configure them. This is mainly of use in large scale, automated, heterogenous deployments but may simplify things for some other end users (as an example at the time of writing the Audio+ DAC installation required running `speaker-test` and two reboots to be functional in `alsamixer` - the process here only requires a single reboot).
