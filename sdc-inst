@@ -15,6 +15,11 @@ case "$1" in
                 fi
 
                 ;;
+        rpa-dac)
+                sudo sh -c "echo 'defaults.pcm.card 0
+                           defaults.ctl.card 0' >>  /etc/asound.conf"
+                sudo wget -O - https://github.com/audioblast/sound-device-control/raw/master/inst/rpa-dac | bash
+                ;;
         *)
                 echo "$1 is not supported."
                 exit 1
