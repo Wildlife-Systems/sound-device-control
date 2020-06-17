@@ -119,6 +119,16 @@ case "$1" in
 							amixer cset name='PGA Volume' -- $3
 						fi
 						;;
+					ai-octo)
+						if [ -z "$4" ]; then
+							echo "Setting all ADC values (1-3). Set individual using captureN."
+							amixer cset name='ADC1 Capture Volume' $3
+							amixer cset name='ADC2 Capture Volume' $3
+							amixer cset name='ADC3 Capture Volume' $3
+						else
+							amixer cset name='ADC$4 Capture Volume' $4
+						fi
+						;;
 					*)
 						echo "capture is not a supported output for $DEV"
 						;;
