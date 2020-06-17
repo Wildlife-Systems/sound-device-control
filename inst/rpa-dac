@@ -403,6 +403,9 @@ if confirm "Do you wish to continue?"; then
     echo "Enjoy your new $productname!" && newline
 
     if [ $promptreboot == "yes" ] || $ASK_TO_REBOOT; then
+        wget https://github.com/audioblast/sound-device-control/raw/master/inst/rpa-dac-asound.state
+        sudo alsactl restore -f ./rpa-dac-asound.state
+        rm ./rpa-dac-asound.state
         sysreboot
     fi
 else
