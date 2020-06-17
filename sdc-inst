@@ -15,6 +15,12 @@ case "$1" in
                 fi
 
                 ;;
+        ai-zero)
+                wget https://github.com/audioblast/sound-device-control/raw/master/inst/audio.injector.scripts_0.1-1_all.deb
+                yes | sudo dpkg -i audio.injector.scripts_0.1-1_all.deb
+                rm audio.injector.scripts_0.1-1_all.deb
+                yes | audioInjector-setup.sh
+                ;;
         rpa-dac)
                 sudo sh -c "echo 'defaults.pcm.card 0
                            defaults.ctl.card 0' >>  /etc/asound.conf"
