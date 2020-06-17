@@ -5,3 +5,4 @@ This bash script allows for control of various Raspberry Pi sound cards using a 
 * audioInjector Zero
 * audioInjector Stereo
 * audioInjector Ultra
+* raspiaudio Audio+ DAC
