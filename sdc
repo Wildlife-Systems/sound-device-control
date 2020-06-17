@@ -17,6 +17,11 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="ai-octo"
 fi
 
+DEVTEST=`aplay -l | grep -c "snd_rpi_hifiberry_dac"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="rpa-dac"
+fi
+
 if ["$DEV" = "0"]; then
 	echo "No compatible sound device found."
 	exit 1
@@ -58,10 +63,24 @@ case "$1" in
 	volume)
 		case "$2" in
 			capture)
-				amixer sset Capture $3
+				case "$DEV" in
+					ai-zero)
+						amixer sset Capture $3
+						;;
+					*)
+						echo "capture is not a supported output for $DEV"
+						;;
+				esac
 				;;
 			master)
-				amixer sset Master $3
+				case "$DEV" in
+					ai-zero | rpa-dac)
+						amixer sset Master $3
+						;;
+					*)
+						echo "master is not a supported output for $DEV"
+						;;
+				esac
 				;;
 		esac
 		;;
@@ -85,6 +104,9 @@ case "$1" in
 				;;
 			ai-octo)
 				echo "AudioInjector Octo"
+				;;
+			rpa-dac)
+				echo "RasPiAudio Audio+ DAC"
 				;;
 			*)
 				echo "No compatible card detected."
