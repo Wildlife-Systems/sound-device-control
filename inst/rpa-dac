@@ -405,8 +405,10 @@ if confirm "Do you wish to continue?"; then
     if [ $promptreboot == "yes" ] || $ASK_TO_REBOOT; then
         wget https://github.com/audioblast/sound-device-control/raw/master/inst/rpa-dac-asound.state
         sudo mv rpa-dac-asound.state /
-        wget https://raw.githubusercontent.com/audioblast/sound-device-control/master/inst/rpa-dac-profile.d
-        sudo mv rpa-dac-profile.d /etc/profile.d/
+        wget https://github.com/audioblast/sound-device-control/raw/master/inst/rpa-dac-profile.d.sh
+        sudo chmod +x rpa-dac-profile.d.sh
+        sudo chown root:root rpa-dac-profile.d.sh
+        sudo mv rpa-dac-profile.d.sh /etc/profile.d/
         sysreboot
     fi
 else
