@@ -82,6 +82,9 @@ case "$1" in
 						;;
 				esac
 				;;
+			*)
+				echo "unknown volume: $2"
+				exit 1
 		esac
 		;;
 	mic-boost)
