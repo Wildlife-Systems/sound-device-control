@@ -208,6 +208,7 @@ case "$1" in
 		echo $"Usage: sdc input <line|mic>"
 		echo $"       sdc output <headphone|hdmi|auto>"
 		echo $"       sdc volume <capture|master> <n%|n>"
+		echo $"       sdc volume <capture|master> <n%|n> <subdevice>"
 		echo $"       sdc mic-boost <on|off>"
 		echo $"       sdc name"
 		exit 1
