@@ -1,5 +1,5 @@
 #!/bin/bash
-DEVTEST=`aplay -l | grep -c "no soundcards found"`
+DEVTEST=`aplay -l 2> >(grep -c "no soundcards found")`
 if [ "$DEVTEST" -eq "1" ]; then
   sudo modprobe -r snd_soc_audioinjector_octo_soundcard
   sudo modprobe -r snd_soc_cs42xx8_i2c
