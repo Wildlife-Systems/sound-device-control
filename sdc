@@ -22,7 +22,7 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="rpa-dac"
 fi
 
-if ["$DEV" = "0"]; then
+if [ "$DEV" = "0" ]; then
 	echo "No compatible sound device found."
 	exit 1
 fi
