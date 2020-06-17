@@ -24,5 +24,5 @@ sdc-inst <shortname>
 ```
 
 ## Development
-* Initial development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatories project at the University of York.
+* Development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatories project at the University of York.
 * Support for further devices was added as part of the Urban Nature Project at the Natural History Museum, London.
