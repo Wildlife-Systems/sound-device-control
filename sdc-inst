@@ -15,6 +15,18 @@ case "$1" in
                 fi
 
                 ;;
+        ai-octo)
+                echo "Adding script to /etc/profile.d to ensure kernel modules are loaded."
+                echo "See: https://github.com/Audio-Injector/Octo/issues/14"
+                wget https://github.com/audioblast/sound-device-control/raw/master/inst/ai-octo-profile.d.sh
+                sudo mv ai-octo-profile.d.sh /etc/profile.d/
+                sudo chmod +x /etc/profile.d/ai-octo-profile.d.sh
+                sudo chown root:root /etc/profile.d/ai-octo-profile.d.sh
+                
+                wget https://github.com/audioblast/sound-device-control/raw/master/inst/audioinjector.octo.setup_0.4_all.deb
+                yes | sudo dpkg -i audioinjector.octo.setup_0.4_all.deb
+                rm audioinjector.octo.setup_0.4_all.deb
+                ;;
         ai-zero)
                 wget https://github.com/audioblast/sound-device-control/raw/master/inst/audio.injector.scripts_0.1-1_all.deb
                 yes | sudo dpkg -i audio.injector.scripts_0.1-1_all.deb
