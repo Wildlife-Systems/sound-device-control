@@ -111,6 +111,14 @@ case "$1" in
 					ai-zero)
 						amixer sset Capture $3
 						;;
+					ai-ultra)
+						if [[ "$3" == *% ]]; then
+							N=`awk "BEGIN {print int(${3%\%} * 48 / 100 )}"`
+							amixer cset name='PGA Volume' -- $N
+						else
+							amixer cset name='PGA Volume' -- $3
+						fi
+						;;
 					*)
 						echo "capture is not a supported output for $DEV"
 						;;
@@ -129,6 +137,9 @@ case "$1" in
 						else
 							amixer sset Headphone -- $3
 						fi
+						;;
+					ai-ultra)
+						amixer cset name='DAC Volume' -- $N
 						;;
 					*)
 						echo "master is not a supported output for $DEV"
