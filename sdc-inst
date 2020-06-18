@@ -1,6 +1,14 @@
 #!/bin/bash
 
 case "$1" in
+        list)
+                echo "none           None"
+                echo "rpi-core-audio Raspberry Pi Onboard Audio"
+                echo "ai-zero        audioInjector Zero"
+                echo "ai-ocoto       audioInjector Octo"
+                echo "ai-ultra       audioInjector Ultra"
+                echo "rpa-dac        Audio+ DAC"
+                ;;
         ai-ultra)
                 #sudo rpi-update
 
