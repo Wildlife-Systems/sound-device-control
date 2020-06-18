@@ -46,6 +46,9 @@ case "$1" in
                            defaults.ctl.card 0' >>  /etc/asound.conf"
                 sudo wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/inst/rpa-dac | bash
                 ;;
+        none)
+                exit 0
+                ;;
         *)
                 echo "$1 is not supported."
                 exit 1
