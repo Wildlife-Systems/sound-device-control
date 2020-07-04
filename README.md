@@ -11,6 +11,7 @@ Devices that have been tested with these scripts are listed below. The short nam
 | audioInjector Octo | ai-octo |
 | raspiaudio Audio+ DAC | rpa-dac |
 | Inbuilt headphone jack | rpi-core-audio |
+| Wolfson Audio Card | wolfson |
 
 ## Installing this package
 `wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
