@@ -289,8 +289,8 @@ case "$1" in
 		esac
 		;;
 	*)
-		echo $"Usage: sdc input <line|mic>"
-		echo $"       sdc output <headphone|hdmi|auto>"
+		echo $"Usage: sdc input <line|mic|micin|spdif>"
+		echo $"       sdc output <headphone|hdmi|spdif|line|speakers|auto>"
 		echo $"       sdc volume <capture|master> <n%|n>"
 		echo $"       sdc volume <capture|master> <n%|n> <subdevice>"
 		echo $"       sdc mic-boost <on|off>"
