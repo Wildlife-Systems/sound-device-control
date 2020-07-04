@@ -280,6 +280,9 @@ case "$1" in
 			rpi-core-audio)
 				echo "Raspberry Pi inbuilt audio"
 				;;
+			wolfson)
+				echo "Wolfson Sound Card"
+				;;
 			*)
 				echo "No compatible card detected."
 				;;
