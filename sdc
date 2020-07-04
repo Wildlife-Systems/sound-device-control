@@ -28,16 +28,18 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="rpa-dac"
 fi
 
-if [ "$DEV" = "0" ]; then
-	echo "No compatible sound device found."
-	exit 1
-fi
-
 DEVTEST=`aplay -l | grep -c "rpi-cirrus-wm5102"`
 if [ "$DEVTEST" -eq "1" ]; then
 	DEV="wolfson"
 	. "/usr/bin/rpi-cirrus-functions.sh"
 fi
+
+if [ "$DEV" = "0" ]; then
+	echo "No compatible sound device found."
+	exit 1
+fi
+
+
 
 case "$1" in
 	input)
