@@ -33,11 +33,20 @@ if [ "$DEV" = "0" ]; then
 	exit 1
 fi
 
+DEVTEST=`aplay -l | grep -c "rpi-cirrus-wm5102"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="wolfson"
+	. "/usr/bin/rpi-cirrus-functions.sh"
+fi
+
 case "$1" in
 	input)
 		case "$2" in 
 			line)
 				case "$DEV" in
+					wolfson)
+						record_from_linein
+						;;
 					ai-zero)
 						alsactl --file /usr/share/doc/audioInjector/asound.state.RCA.thru.test restore
 						;;
