@@ -8,7 +8,24 @@ case "$1" in
                 echo "ai-ocoto       audioInjector Octo"
                 echo "ai-ultra       audioInjector Ultra"
                 echo "rpa-dac        Audio+ DAC"
+                echo "wolfson        Wolfson Audio Card"
                 ;;
+        wolfson)
+                # firstly disable PWM audio
+                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
+                
+                # now check to see the correct device tree overlay is loaded ...
+                cnt=`grep -c rpi-cirrus-wm5102 /boot/config.txt`
+                if [ "$cnt" -eq "0" ]; then
+                        sudo sh -c "echo '# enable the AudioInjector.net sound card
+                        dtoverlay=rpi-cirrus-wm5102' >> /boot/config.txt"
+                fi
+                
+                #Install helper script
+                wget https://github.com/Wildlife-Systems/sound-device-control/raw/master/inst/rpi-cirrus-functions.sh
+                sudo mv rpi-cirrus-functions.sh /usr/bin
+                sudo chmod +x /usr/bin/rpi-cirrus-functions.sh
+                sudo chown root:root /usr/bin/rpi-cirrus-functions.sh
         ai-ultra)
                 #sudo rpi-update
 
