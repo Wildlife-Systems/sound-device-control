@@ -28,7 +28,7 @@ if [ "$DEVTEST" -eq "1" ]; then
 	DEV="rpa-dac"
 fi
 
-DEVTEST=`aplay -l | grep -c "rpi-cirrus-wm5102"`
+DEVTEST=`aplay -l | grep -c "RPiCirrus"`
 if [ "$DEVTEST" -eq "1" ]; then
 	DEV="wolfson"
 	. "/usr/bin/rpi-cirrus-functions.sh"
