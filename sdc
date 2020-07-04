@@ -63,6 +63,9 @@ case "$1" in
 				;;
 			mic)
 				case "$DEV" in
+					wolfson)
+						record_from_dmic
+						;;
 					ai-zero)
 						alsactl --file /usr/share/doc/audioInjector/asound.state.MIC.thru.test restore
 						;;
@@ -75,12 +78,40 @@ case "$1" in
 						;;
 				esac
 				;;
+			headset)
+				case "$DEV" in
+					wolfson)
+						record_from_headset
+						;;
+					*)
+						echo "mic is not a supported input for $DEV"
+						exit 1
+						;;
+				esac
+				;;
+			spdif)
+				case "$DEV" in
+					wolfson)
+						record_from_spdif
+						;;
+					*)
+						echo "spdif is not a supported input for $DEV"
+						exit 1
+						;;
+				esac
+				;;
+			*)
+				echo "Unknown input $2"
+				exit 1
 		esac
 		;;
 	output)
 		case "$2" in
 			headphone)
 				case "$DEV" in
+					wolfson)
+						playback_to_headset
+						;;
 					rpi-core-audio)
 						amixer cset numid=3 1
 						;;
@@ -88,6 +119,42 @@ case "$1" in
 						echo "headphone is not a supported output for $DEV"
 						exit 1
 						;;
+				esac
+				;;
+			line)
+				case "$DEV" in
+					wolfson)
+						playback_to_lineout
+						;;
+					*)
+						echo "line is not a supported output for $DEV"
+						exit 1
+						;;
+					
+				esac
+				;;
+			spdif)
+				case "$DEV" in
+					wolfson)
+						playback_to_spdif
+						;;
+					*)
+						echo "spdif is not a supported output for $DEV"
+						exit 1
+						;;
+					
+				esac
+				;;
+			speaker)
+				case "$DEV" in
+					wolfson)
+						playback_to_speakers
+						;;
+					*)
+						echo "speaker is not a supported output for $DEV"
+						exit 1
+						;;
+					
 				esac
 				;;
 			hdmi)
@@ -113,6 +180,9 @@ case "$1" in
 			
 				esac
 				;;
+			*)
+				echo "Unknown output $2"
+				exit 1
 		esac
 		;;
 	volume)
