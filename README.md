@@ -24,6 +24,19 @@ Usage:
 sdc-inst <shortname>
 ```
 
+## Control of sound device software
+The script `sdc` will attempt to configure the installed sound device using a standardised interface, giving an error when the requested functionality is not supported by the device.
+
+Usage:
+```
+sdc input <line|mic|micin|spdif>
+sdc output <headphone|hdmi|spdif|line|speakers|auto>
+sdc volume <capture|master> <n%|n>
+sdc volume <capture|master> <n%|n> <subdevice>
+sdc mic-boost <on|off>
+sdc name
+```
+
 ## Development
 * Development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatories project at the University of York.
 * Support for further devices was added as part of the Urban Nature Project at the Natural History Museum, London.
