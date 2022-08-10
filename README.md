@@ -1,6 +1,8 @@
 # Sound device control and installation for Raspberry Pi
 This bash script allows for control of various Raspberry Pi sound cards using a simple and standardised interface. The script was developed as part of the Automated Acoustic Observatories project and simplifies the automated control of audio collection when using a network of Raspberry Pi devices with a heterogenous set of sound devices.
 
+This tool is designed to be used in the large-scale deployment of devices, and therefore it does not run in an interactive mode.
+
 ## Comaptible devices
 Devices that have been tested with these scripts are listed below. The short name is used internally to refer to different sound cards, and is the paramater passed to `sdc-inst` to perform the installation.
 
