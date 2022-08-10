@@ -72,7 +72,6 @@ case "$1" in
                 cd sound-device-seeed-voicecard
                 sudo ./install.sh
                 sudo rm -r ../sound-device-seeed-voicecard
-                sudo reboot
                 ;;
         none)
                 exit 0
