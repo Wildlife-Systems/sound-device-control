@@ -7,6 +7,7 @@ case "$1" in
                 echo "ai-zero        audioInjector Zero"
                 echo "ai-ocoto       audioInjector Octo"
                 echo "ai-ultra       audioInjector Ultra"
+                echo "respeaker-6    Respeaker 6 mic array"
                 echo "rpa-dac        Audio+ DAC"
                 echo "wolfson        Wolfson Audio Card"
                 ;;
@@ -63,6 +64,14 @@ case "$1" in
                 sudo sh -c "echo 'defaults.pcm.card 0
                            defaults.ctl.card 0' >>  /etc/asound.conf"
                 sudo wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/inst/rpa-dac | bash
+                ;;
+        respeaker-6)
+                cd /tmp
+                git clone https://github.com/Wildlife-Systems/sound-device-seeed-voicecard
+                cd sound-device-seeed-voicecard
+                sudo ./install.sh
+                sudo rm -r ../sound-device-seeed-voicecard
+                sudo reboot
                 ;;
         none)
                 exit 0
