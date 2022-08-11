@@ -67,7 +67,7 @@ case "$1" in
                 ;;
         respeaker-6)
                 sudo apt-get update
-                sudo apt-get install git
+                sudo apt-get install git -y
                 sudo raspi-config nonint do_onewire 1
                 cd /tmp
                 git clone https://github.com/Wildlife-Systems/sound-device-seeed-voicecard
