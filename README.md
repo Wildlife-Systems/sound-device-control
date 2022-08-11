@@ -39,6 +39,9 @@ sdc mic-boost <on|off>
 sdc name
 ```
 
+## Further reading
+[Sensor networks 1: abstracting heterogeneity](https://edwbaker.medium.com/sensor-networks-1-abstracting-heterogeneity-319c0c41c9fa)
+
 ## Development
 * Development of this script was done as part of the Levehulme Trust funded Automated Acoustic Observatories project at the University of York.
 * Support for further devices was added as part of the Urban Nature Project at the Natural History Museum, London.
