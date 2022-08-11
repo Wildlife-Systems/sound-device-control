@@ -66,6 +66,8 @@ case "$1" in
                 sudo wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/inst/rpa-dac | bash
                 ;;
         respeaker-6)
+                sudo apt-get update
+                sudo apt-get install git
                 sudo raspi-config nonint do_onewire 1
                 cd /tmp
                 git clone https://github.com/Wildlife-Systems/sound-device-seeed-voicecard
