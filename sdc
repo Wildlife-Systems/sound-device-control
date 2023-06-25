@@ -42,7 +42,7 @@ fi
 
 if [ "$DEV" = "0" ]; then
 	echo "No compatible sound device found."
-	exit 1
+	exit 30
 fi
 
 
@@ -63,7 +63,7 @@ case "$1" in
 						;;
 					*)
 						echo "line is not a supported input for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
@@ -80,7 +80,7 @@ case "$1" in
 						;;
 					*)
 						echo "mic is not a supported input for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
@@ -91,7 +91,7 @@ case "$1" in
 						;;
 					*)
 						echo "mic is not a supported input for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
@@ -102,13 +102,13 @@ case "$1" in
 						;;
 					*)
 						echo "spdif is not a supported input for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
 			*)
 				echo "Unknown input $2"
-				exit 1
+				exit 32
 		esac
 		;;
 	output)
@@ -123,7 +123,7 @@ case "$1" in
 						;;
 					*)
 						echo "headphone is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
@@ -134,7 +134,7 @@ case "$1" in
 						;;
 					*)
 						echo "line is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 					
 				esac
@@ -146,7 +146,7 @@ case "$1" in
 						;;
 					*)
 						echo "spdif is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 					
 				esac
@@ -158,7 +158,7 @@ case "$1" in
 						;;
 					*)
 						echo "speaker is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 					
 				esac
@@ -170,7 +170,7 @@ case "$1" in
 						;;
 					*)
 						echo "HDMI is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 				esac
 				;;
@@ -181,14 +181,14 @@ case "$1" in
 						;;
 					*)
 						echo "auto is not a supported output for $DEV"
-						exit 1
+						exit 31
 						;;
 			
 				esac
 				;;
 			*)
 				echo "Unknown output $2"
-				exit 1
+				exit 31
 		esac
 		;;
 	volume)
@@ -256,7 +256,7 @@ case "$1" in
 				;;
 			*)
 				echo "unknown volume: $2"
-				exit 1
+				exit 31
 		esac
 		;;
 	mic-boost)
@@ -291,6 +291,7 @@ case "$1" in
 				;;
 			*)
 				echo "No compatible card detected."
+				echo 30
 				;;
 		esac
 		;;
@@ -301,6 +302,6 @@ case "$1" in
 		echo $"       sdc volume <capture|master> <n%|n> <subdevice>"
 		echo $"       sdc mic-boost <on|off>"
 		echo $"       sdc name"
-		exit 1
+		exit 2
 		;;
 esac
