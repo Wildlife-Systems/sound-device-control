@@ -6,6 +6,16 @@
 # please refer to https://docs.wildlife.systems, or for more information on
 # the project itself, please refer to https://wildlife.systems.
 
+# Return codes
+#
+# Further information on WildlifeSystems standard reurn codes can be found
+# at https://docs.wildlife.systems/return-codes.html
+# 0 - Success
+# 2 - no arguments
+# 30 - Unsupported device
+# 31 - Unsupported feature
+# 32 - Unknown feature
+
 #Identify the sound card
 DEV="0"
 
