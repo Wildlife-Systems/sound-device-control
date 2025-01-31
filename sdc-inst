@@ -20,10 +20,17 @@ case "$1" in
                 echo "ai-zero        audioInjector Zero"
                 echo "ai-ocoto       audioInjector Octo"
                 echo "ai-ultra       audioInjector Ultra"
+                echo "i2c            i2c microphone (e.g.Google Voice Hat)"
                 echo "respeaker-6    Respeaker 6 mic array"
                 echo "rpa-dac        Audio+ DAC"
                 echo "wolfson        Wolfson Audio Card"
                 ;;
+        i2c)
+                cnt=`grep -c rpi-cirrus-wm5102 /boot/firmware/config.txt`
+                if [ "$cnt" -eq "0" ]; then
+                        sudo sh -c "echo '# enable i2c sound card
+                        dtoverlay=googlevoicehat-soundcard' >> /boot/firmware/config.txt"
+                fi
         wolfson)
                 # firstly disable PWM audio
                 sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
@@ -31,7 +38,7 @@ case "$1" in
                 # now check to see the correct device tree overlay is loaded ...
                 cnt=`grep -c rpi-cirrus-wm5102 /boot/config.txt`
                 if [ "$cnt" -eq "0" ]; then
-                        sudo sh -c "echo '# enable the AudioInjector.net sound card
+                        sudo sh -c "echo '# enable the Wolfson sound card
                         dtoverlay=rpi-cirrus-wm5102' >> /boot/config.txt"
                 fi
                 
