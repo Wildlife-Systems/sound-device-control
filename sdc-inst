@@ -31,6 +31,7 @@ case "$1" in
                         sudo sh -c "echo '# enable i2c sound card
                         dtoverlay=googlevoicehat-soundcard' >> /boot/firmware/config.txt"
                 fi
+                ;;
         wolfson)
                 # firstly disable PWM audio
                 sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
