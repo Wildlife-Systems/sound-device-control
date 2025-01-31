@@ -50,6 +50,11 @@ if [ "$DEVTEST" -eq "1" ]; then
 	. "/usr/bin/rpi-cirrus-functions.sh"
 fi
 
+DEVTEST=`aplay -l | grep -c "voicehat-hifi-0"`
+if [ "$DEVTEST" -eq "1" ]; then
+	DEV="i2c"
+fi
+
 if [ "$DEV" = "0" ]; then
 	echo "No compatible sound device found."
 	exit 30
