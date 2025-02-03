@@ -15,3 +15,8 @@ wget https://github.com/wildlife-systems/sound-device-control/raw/master/sdc-ins
 chown root:root sdc-inst
 chmod +x sdc-inst
 mv sdc-inst /usr/bin
+
+sudo apt install alsa-utils
+
+# Add user to audio group
+sudo usermod -a -G audio $USER
