@@ -17,7 +17,7 @@ Devices that have been tested with these scripts are listed below. The short nam
 
 ## Installing this package
 ```
-wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash`
+wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/install | sudo bash
 ```
 
 ## Installation of sound device software
