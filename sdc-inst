@@ -13,6 +13,15 @@
 # 0 - Success
 # 30 - Unsupported device
 
+# Function to get location of config.txt
+function get_config_txt {
+        if [ -f /boot/firmware/config.txt ]; then
+                echo "/boot/firmware/config.txt"
+        else
+                echo "/boot/config.txt"
+        fi
+}
+
 case "$1" in
         list)
                 echo "none           None"
@@ -26,21 +35,23 @@ case "$1" in
                 echo "wolfson        Wolfson Audio Card"
                 ;;
         i2c)
-                cnt=`grep -c rpi-cirrus-wm5102 /boot/firmware/config.txt`
+                config_txt=$(get_config_txt)
+                cnt=$(grep -c googlevoicehat-soundcard "$config_txt")
                 if [ "$cnt" -eq "0" ]; then
-                        sudo sh -c "echo '# enable i2c sound card
-                        dtoverlay=googlevoicehat-soundcard' >> /boot/firmware/config.txt"
+                                sudo sh -c "echo '# enable i2c sound card
+                                dtoverlay=googlevoicehat-soundcard' >> $config_txt"
                 fi
                 ;;
         wolfson)
+                config_txt=$(get_config_txt)
                 # firstly disable PWM audio
-                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
+                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' "$config_txt"
                 
                 # now check to see the correct device tree overlay is loaded ...
-                cnt=`grep -c rpi-cirrus-wm5102 /boot/config.txt`
+                cnt=`grep -c rpi-cirrus-wm5102 $config_txt`
                 if [ "$cnt" -eq "0" ]; then
                         sudo sh -c "echo '# enable the Wolfson sound card
-                        dtoverlay=rpi-cirrus-wm5102' >> /boot/config.txt"
+                        dtoverlay=rpi-cirrus-wm5102' >> $config_txt"
                 fi
                 
                 #Install helper script
@@ -50,16 +61,17 @@ case "$1" in
                 sudo chown root:root /usr/bin/rpi-cirrus-functions.sh
                 ;;
         ai-ultra)
+                config_txt=$(get_config_txt)
                 #sudo rpi-update
 
                 # firstly disable PWM audio
-                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' /boot/config.txt
+                sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' $config_txt
 
                 # now check to see the correct device tree overlay is loaded ...
-                cnt=`grep -c audioinjector-ultra /boot/config.txt`
+                cnt=`grep -c audioinjector-ultra $config_txt`
                 if [ "$cnt" -eq "0" ]; then
                         sudo sh -c "echo '# enable the AudioInjector.net sound card
-                        dtoverlay=audioinjector-ultra' >> /boot/config.txt"
+                        dtoverlay=audioinjector-ultra' >> $config_txt"
                 fi
 
                 ;;
