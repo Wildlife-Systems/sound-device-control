@@ -29,18 +29,26 @@ case "$1" in
                 echo "ai-zero        audioInjector Zero"
                 echo "ai-ocoto       audioInjector Octo"
                 echo "ai-ultra       audioInjector Ultra"
-                echo "i2c            i2c microphone (e.g.Google Voice Hat)"
+                echo "i2s            i2s microphone (e.g.Google Voice Hat)"
                 echo "respeaker-6    Respeaker 6 mic array"
                 echo "rpa-dac        Audio+ DAC"
                 echo "wolfson        Wolfson Audio Card"
                 ;;
-        i2c)
+        i2s)
                 config_txt=$(get_config_txt)
                 cnt=$(grep -c googlevoicehat-soundcard "$config_txt")
                 if [ "$cnt" -eq "0" ]; then
-                                sudo sh -c "echo '# enable i2c sound card
+                                sudo sh -c "echo '# enable i2s sound card
                                 dtoverlay=googlevoicehat-soundcard' >> $config_txt"
                 fi
+
+                # Backup /etc/asound.conf if it exists
+                if [ -f /etc/asound.conf ]; then
+                        echo "Backing up /etc/asound.conf to /etc/asound.conf.bak"
+                        sudo mv /etc/asound.conf /etc/asound.conf.bak
+                fi
+
+                sudo wget -O /etc/asound.conf https://raw.githubusercontent.com/Wildlife-Systems/sound-device-control/master/inst/i2s-default
                 ;;
         wolfson)
                 config_txt=$(get_config_txt)
