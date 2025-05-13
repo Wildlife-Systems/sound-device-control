@@ -1,0 +1,6 @@
+#!/bin/bash
+
+chmod +x /usr/bin/sdc
+chmod +x /usr/bin/sdc-inst
+
+exit 0

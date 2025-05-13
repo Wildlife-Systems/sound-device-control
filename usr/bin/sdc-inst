@@ -48,7 +48,7 @@ case "$1" in
                         sudo mv /etc/asound.conf /etc/asound.conf.bak
                 fi
 
-                sudo wget -O /etc/asound.conf https://raw.githubusercontent.com/Wildlife-Systems/sound-device-control/master/inst/i2s-default
+                sudo cp /usr/share/sdc/i2s-default /etc/asound.conf
                 ;;
         wolfson)
                 config_txt=$(get_config_txt)
@@ -63,8 +63,7 @@ case "$1" in
                 fi
                 
                 #Install helper script
-                wget https://github.com/Wildlife-Systems/sound-device-control/raw/master/inst/rpi-cirrus-functions.sh
-                sudo mv rpi-cirrus-functions.sh /usr/bin
+                sudo cp /usr/share/sdc/rpi-cirrus-functions.sh /usr/bin
                 sudo chmod +x /usr/bin/rpi-cirrus-functions.sh
                 sudo chown root:root /usr/bin/rpi-cirrus-functions.sh
                 ;;
@@ -86,25 +85,20 @@ case "$1" in
         ai-octo)
                 echo "Adding script to /etc/profile.d to ensure kernel modules are loaded."
                 echo "See: https://github.com/Audio-Injector/Octo/issues/14"
-                wget https://github.com/wildlife-systems/sound-device-control/raw/master/inst/ai-octo-profile.d.sh
-                sudo mv ai-octo-profile.d.sh /etc/profile.d/
+                sudo cp /usr/share/sdc/ai-octo-profile.d.sh /etc/profile.d/
                 sudo chmod +x /etc/profile.d/ai-octo-profile.d.sh
                 sudo chown root:root /etc/profile.d/ai-octo-profile.d.sh
                 
-                wget https://github.com/wildlife-systems/sound-device-control/raw/master/inst/audioinjector.octo.setup_0.4_all.deb
-                yes | sudo dpkg -i audioinjector.octo.setup_0.4_all.deb
-                rm audioinjector.octo.setup_0.4_all.deb
+                yes | sudo dpkg -i /usr/share/sdc/audioinjector.octo.setup_0.4_all.deb
                 ;;
         ai-zero)
-                wget https://github.com/wildlife-systems/sound-device-control/raw/master/inst/audio.injector.scripts_0.1-1_all.deb
-                yes | sudo dpkg -i audio.injector.scripts_0.1-1_all.deb
-                rm audio.injector.scripts_0.1-1_all.deb
+                yes | sudo dpkg -i /usr/share/sdc/audio.injector.scripts_0.1-1_all.deb
                 yes | audioInjector-setup.sh
                 ;;
         rpa-dac)
                 sudo sh -c "echo 'defaults.pcm.card 0
                            defaults.ctl.card 0' >>  /etc/asound.conf"
-                sudo wget -O - https://github.com/wildlife-systems/sound-device-control/raw/master/inst/rpa-dac | bash
+                echo /usr/share/rpa-dac | bash
                 ;;
         respeaker-6)
                 sudo apt-get update

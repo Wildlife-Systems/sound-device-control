@@ -52,7 +52,7 @@ fi
 
 DEVTEST=`aplay -l | grep -c "voicehat-hifi-0"`
 if [ "$DEVTEST" -eq "1" ]; then
-	DEV="i2c"
+	DEV="i2s"
 fi
 
 if [ "$DEV" = "0" ]; then

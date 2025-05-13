@@ -1,0 +1,13 @@
+Source: sound-device-control
+Section: utils
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+Maintainer: Ed Baker <ed@ebaker.me.uk>
+Description: WildlifeSytems sound device control
+ Abstraction layr for installing and configuring sound devices.
+
+Package: sensor-control
+Priority: utils 
+Architecture: all
+Description: WildlifeSytems sound device control
+ Abstraction layr for installing and configuring sound devices.
