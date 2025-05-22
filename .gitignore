@@ -1,0 +1,5 @@
+debian/.debhelper/
+debian/debhelper-*
+debian/files
+debian/sound-device-control.substvars
+debian/sound-device-control/

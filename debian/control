@@ -6,7 +6,7 @@ Maintainer: Ed Baker <ed@ebaker.me.uk>
 Description: WildlifeSytems sound device control
  Abstraction layr for installing and configuring sound devices.
 
-Package: sensor-control
+Package: sound-device-control
 Priority: utils 
 Architecture: all
 Depends: pi-data
