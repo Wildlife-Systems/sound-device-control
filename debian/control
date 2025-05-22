@@ -9,5 +9,6 @@ Description: WildlifeSytems sound device control
 Package: sensor-control
 Priority: utils 
 Architecture: all
+Depends: pi-data
 Description: WildlifeSytems sound device control
  Abstraction layr for installing and configuring sound devices.

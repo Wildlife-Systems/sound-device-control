@@ -13,14 +13,7 @@
 # 0 - Success
 # 30 - Unsupported device
 
-# Function to get location of config.txt
-function get_config_txt {
-        if [ -f /boot/firmware/config.txt ]; then
-                echo "/boot/firmware/config.txt"
-        else
-                echo "/boot/config.txt"
-        fi
-}
+config_txt=$(pi-data config_txt)
 
 case "$1" in
         list)
@@ -35,7 +28,6 @@ case "$1" in
                 echo "wolfson        Wolfson Audio Card"
                 ;;
         i2s)
-                config_txt=$(get_config_txt)
                 cnt=$(grep -c googlevoicehat-soundcard "$config_txt")
                 if [ "$cnt" -eq "0" ]; then
                                 sudo sh -c "echo '# enable i2s sound card
@@ -51,7 +43,6 @@ case "$1" in
                 sudo cp /usr/share/sdc/i2s-default /etc/asound.conf
                 ;;
         wolfson)
-                config_txt=$(get_config_txt)
                 # firstly disable PWM audio
                 sudo sed -i 's/^\s*dtparam=audio/#dtparam=audio/' "$config_txt"
                 
@@ -68,7 +59,6 @@ case "$1" in
                 sudo chown root:root /usr/bin/rpi-cirrus-functions.sh
                 ;;
         ai-ultra)
-                config_txt=$(get_config_txt)
                 #sudo rpi-update
 
                 # firstly disable PWM audio
